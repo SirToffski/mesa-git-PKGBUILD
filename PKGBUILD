@@ -46,7 +46,6 @@ sha512sums=('SKIP'
 # 4  llvm (stable from extra) Default value
 # 
 
-_extra_lto_flag=""
 
 if [[ ! $MESA_WHICH_LLVM ]] ; then
     MESA_WHICH_LLVM=2
@@ -124,7 +123,8 @@ build () {
        --auto-features enabled \
        -D optimization=2 \
        -D b_ndebug=true \
-       -D b_lto=true ${_extra_lto_flag} \
+       -D b_lto=true \
+       -D b_lto_mode=thin \
        -D b_pie=true \
        --wrap-mode=nodownload \
        -D prefix=/usr \
