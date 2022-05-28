@@ -123,6 +123,7 @@ build () {
     meson setup mesa _build \
        --auto-features enabled \
        -D optimization=3 \
+       -D buildtype=plain \
        -D b_ndebug=true \
        -D b_lto=true \
        -D b_lto_mode=thin \
