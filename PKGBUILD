@@ -19,7 +19,7 @@ makedepends=('git' 'python-mako' 'xorgproto'
               'libxml2' 'libx11'  'libvdpau' 'libva' 'elfutils' 'libxrandr'
               'wayland-protocols' 'meson' 'ninja' 'glslang' 'libclc')
 depends=('libdrm' 'libxxf86vm' 'libxdamage' 'libxshmfence' 'libelf'
-         'libomxil-bellagio' 'libunwind' 'libglvnd' 'wayland' 'lm_sensors' 'libclc' 'vulkan-icd-loader' 'zstd' 'expat' 'spirv-tools' 'spirv-llvm-translator-git')
+         'libomxil-bellagio' 'libunwind' 'libglvnd' 'wayland' 'lm_sensors' 'libclc' 'vulkan-icd-loader' 'zstd' 'expat')
 optdepends=('opengl-man-pages: for the OpenGL API man pages')
 provides=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-layer' 'libva-mesa-driver' 'mesa-vdpau' 'vulkan-swrast' 'vulkan-driver' 'mesa-libgl' 'opengl-driver' 'opencl-driver')
 conflicts=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-layer' 'libva-mesa-driver' 'mesa-vdpau' 'vulkan-swrast' 'mesa-libgl')
@@ -160,8 +160,7 @@ build () {
        -D zstd=enabled \
        -D microsoft-clc=disabled \
        -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D vulkan-beta=true \
-       -D opencl-spirv=true
+       -D vulkan-beta=true
        
     meson configure _build
     
