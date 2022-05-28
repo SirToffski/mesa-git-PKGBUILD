@@ -122,7 +122,7 @@ prepare() {
 build () {
     meson setup mesa _build \
        --auto-features enabled \
-       -D optimization=2 \
+       -D optimization=3 \
        -D b_ndebug=true \
        -D b_lto=true \
        -D b_lto_mode=thin \
