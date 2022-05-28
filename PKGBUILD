@@ -126,8 +126,7 @@ build () {
        -D b_ndebug=true \
        -D b_lto=true ${_extra_lto_flag} \
        -D b_pie=true \
-       -D buildtype=plain \
-       --wrap-mode=nofallback \
+       --wrap-mode=nodownload \
        -D prefix=/usr \
        -D sysconfdir=/etc \
        -D platforms=x11,wayland \
