@@ -46,6 +46,7 @@ sha512sums=('SKIP'
 # 4  llvm (stable from extra) Default value
 # 
 
+MESA_WHICH_LLVM=2
 
 if [[ ! $MESA_WHICH_LLVM ]] ; then
     MESA_WHICH_LLVM=2
