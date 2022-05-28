@@ -47,7 +47,7 @@ sha512sums=('SKIP'
 # 
 
 if [[ ! $MESA_WHICH_LLVM ]] ; then
-    MESA_WHICH_LLVM=4
+    MESA_WHICH_LLVM=2
 fi
 
 case $MESA_WHICH_LLVM in
@@ -77,6 +77,8 @@ case $MESA_WHICH_LLVM in
         ;;
     *)
 esac
+
+_extra_lto_flag='-D b_lto_mode=thin'
 
 pkgver() {
     cd mesa
@@ -115,19 +117,18 @@ prepare() {
 
 build () {
     meson setup mesa _build \
+       --wrap-mode=nofallback \
+       -D b_lto=true "${_extra_lto_flag}" \
        -D b_ndebug=true \
        -D buildtype=plain \
-       --wrap-mode=nofallback \
-       -D prefix=/usr \
-       -D sysconfdir=/etc \
-       -D platforms=x11,wayland \
-       -D gallium-drivers=r300,r600,radeonsi,nouveau,svga,swrast,virgl,iris,zink,crocus \
-       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
+       -D b_pie=true \
        -D dri3=enabled \
        -D egl=enabled \
+       -D gallium-drivers=r300,r600,radeonsi,svga,swrast,virgl,iris,zink,crocus \
        -D gallium-extra-hud=true \
        -D gallium-nine=true \
        -D gallium-omx=bellagio \
+       -D gallium-opencl=icd \
        -D gallium-va=enabled \
        -D gallium-vdpau=enabled \
        -D gallium-xa=enabled \
@@ -137,18 +138,22 @@ build () {
        -D gles2=enabled \
        -D glvnd=true \
        -D glx=dri \
-       -D libunwind=enabled \
+       -D libunwind=disabled \
        -D llvm=enabled \
        -D lmsensors=enabled \
-       -D osmesa=true \
-       -D shared-glapi=enabled \
-       -D gallium-opencl=icd \
-       -D valgrind=disabled \
-       -D vulkan-layers=device-select,overlay \
-       -D tools=[] \
-       -D zstd=enabled \
        -D microsoft-clc=disabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
+       -D optimization=2 \
+       -D osmesa=true \
+       -D platforms=x11,wayland \
+       -D prefix=/usr \
+       -D shared-glapi=enabled \
+       -D sysconfdir=/etc \
+       -D tools=[] \
+       -D valgrind=disabled \
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
+       -D vulkan-layers=device-select,overlay \
+       -D zstd=enabled
        
     meson configure _build
     
