@@ -46,6 +46,8 @@ sha512sums=('SKIP'
 # 4  llvm (stable from extra) Default value
 # 
 
+_extra_lto_flag=""
+
 if [[ ! $MESA_WHICH_LLVM ]] ; then
     MESA_WHICH_LLVM=2
 fi
@@ -77,8 +79,6 @@ case $MESA_WHICH_LLVM in
         ;;
     *)
 esac
-
-_extra_lto_flag='-D b_lto_mode=thin'
 
 pkgver() {
     cd mesa
@@ -113,22 +113,31 @@ prepare() {
         echo "Applying patch $_patchfile..."
         patch --directory=mesa --forward --strip=1 --input="${srcdir}/${_patchfile}"
     done
+
+    if clang --version 2>/dev/null | grep -iq "clang\s*version\s*[0-9]" && ld.lld --version 2>/dev/null | grep -iq "LLD\s*[0-9]"; then
+        _extra_lto_flag='-D b_lto_mode=thin'
+  fi
 }
 
 build () {
     meson setup mesa _build \
-       --wrap-mode=nofallback \
-       -D b_lto=true "${_extra_lto_flag}" \
+       --auto-features enabled \
+       -D optimization=2 \
        -D b_ndebug=true \
-       -D buildtype=plain \
+       -D b_lto=true ${_extra_lto_flag} \
        -D b_pie=true \
+       -D buildtype=plain \
+       --wrap-mode=nofallback \
+       -D prefix=/usr \
+       -D sysconfdir=/etc \
+       -D platforms=x11,wayland \
+       -D gallium-drivers=r300,r600,radeonsi,nouveau,svga,swrast,virgl,iris,zink,crocus \
+       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
        -D dri3=enabled \
        -D egl=enabled \
-       -D gallium-drivers=r300,r600,radeonsi,svga,swrast,virgl,iris,zink,crocus \
        -D gallium-extra-hud=true \
        -D gallium-nine=true \
        -D gallium-omx=bellagio \
-       -D gallium-opencl=icd \
        -D gallium-va=enabled \
        -D gallium-vdpau=enabled \
        -D gallium-xa=enabled \
@@ -138,22 +147,18 @@ build () {
        -D gles2=enabled \
        -D glvnd=true \
        -D glx=dri \
-       -D libunwind=disabled \
+       -D libunwind=enabled \
        -D llvm=enabled \
        -D lmsensors=enabled \
-       -D microsoft-clc=disabled \
-       -D optimization=2 \
        -D osmesa=true \
-       -D platforms=x11,wayland \
-       -D prefix=/usr \
        -D shared-glapi=enabled \
-       -D sysconfdir=/etc \
-       -D tools=[] \
+       -D gallium-opencl=icd \
        -D valgrind=disabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
        -D vulkan-layers=device-select,overlay \
-       -D zstd=enabled
+       -D tools=[] \
+       -D zstd=enabled \
+       -D microsoft-clc=disabled \
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
        
     meson configure _build
     
