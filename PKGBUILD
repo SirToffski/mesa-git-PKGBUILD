@@ -159,8 +159,7 @@ build () {
        -D tools=[] \
        -D zstd=enabled \
        -D microsoft-clc=disabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D vulkan-beta=true
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
        
     meson configure _build
     
