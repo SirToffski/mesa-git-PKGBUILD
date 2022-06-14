@@ -122,7 +122,7 @@ prepare() {
 build () {
     meson setup mesa _build \
        --auto-features enabled \
-       -D optimization=3 \
+       -D optimization=2 \
        -D buildtype=plain \
        -D b_ndebug=true \
        -D b_lto=true \
@@ -159,7 +159,8 @@ build () {
        -D tools=[] \
        -D zstd=enabled \
        -D microsoft-clc=disabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+       -D vulkan-beta=true
        
     meson configure _build
     
