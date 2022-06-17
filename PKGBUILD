@@ -121,14 +121,13 @@ prepare() {
 
 build () {
     meson setup mesa _build \
-       --auto-features enabled \
-       -D optimization=2 \
        -D buildtype=plain \
+       -D optimization=3 \
        -D b_ndebug=true \
        -D b_lto=true \
        -D b_lto_mode=thin \
        -D b_pie=true \
-       --wrap-mode=nodownload \
+       --wrap-mode=nofallback \
        -D prefix=/usr \
        -D sysconfdir=/etc \
        -D platforms=x11,wayland \
@@ -159,8 +158,7 @@ build () {
        -D tools=[] \
        -D zstd=enabled \
        -D microsoft-clc=disabled \
-       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
-       -D vulkan-beta=true
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
        
     meson configure _build
     
