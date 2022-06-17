@@ -114,9 +114,6 @@ prepare() {
         patch --directory=mesa --forward --strip=1 --input="${srcdir}/${_patchfile}"
     done
 
-    if clang --version 2>/dev/null | grep -iq "clang\s*version\s*[0-9]" && ld.lld --version 2>/dev/null | grep -iq "LLD\s*[0-9]"; then
-        _extra_lto_flag='-D b_lto_mode=thin'
-  fi
 }
 
 build () {
