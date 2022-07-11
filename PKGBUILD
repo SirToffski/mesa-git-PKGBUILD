@@ -30,10 +30,10 @@ source=('mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
         'fix_llvm_15.patch')
 md5sums=('SKIP'
          '5c65a0fe315dd347e09b1f2826a1df5a'
-         '560671af0c5d1528cf488efc81b8160e')
+         'eaee1bef8d79aeaf510557a5a1054e2e')
 sha512sums=('SKIP'
             '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2'
-            'af2804e426cf59d3d8cc7810fec9e471ec4f36695b74724b9a3a4acd052c23506cda77ad381953f3d3437536f2a6c98fd07ff49eef95185d7027d2698f5c5914')
+            '0017d2d5edff8f4b283f32bb15f1cd58a5ac91b04657e388f3950cd0458fff68ffd2cc03b050d976f4017da0eba33b5d3cfcc2a3f37c3ee6d38a31dfd47b8fdd')
 
 # NINJAFLAGS is an env var used to pass commandline options to ninja
 # NOTE: It's your responbility to validate the value of $NINJAFLAGS. If unsure, don't set it.
@@ -76,8 +76,8 @@ case $MESA_WHICH_LLVM in
         ;;
     4)
         # extra/llvm
-        makedepends+=(llvm=13.0.1 clang=13.0.1)
-        depends+=(llvm-libs=13.0.1)
+        makedepends+=(llvm=14.0.6 clang=14.0.6)
+        depends+=(llvm-libs=14.0.1)
         optdepends+=('clang: opencl' 'compiler-rt: opencl')
         ;;
     *)
