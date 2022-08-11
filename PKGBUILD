@@ -26,8 +26,7 @@ conflicts=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-laye
 url="https://www.mesa3d.org"
 license=('custom')
 source=('mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-        'LICENSE'
-        'fix_llvm_15.patch')
+        'LICENSE')
 md5sums=('SKIP'
          '5c65a0fe315dd347e09b1f2826a1df5a')
 sha512sums=('SKIP'
