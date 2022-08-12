@@ -26,11 +26,14 @@ conflicts=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-laye
 url="https://www.mesa3d.org"
 license=('custom')
 source=('mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-        'LICENSE')
+        'LICENSE'
+        '01-fix-llvm-16-build.patch')
 md5sums=('SKIP'
-         '5c65a0fe315dd347e09b1f2826a1df5a')
+         '5c65a0fe315dd347e09b1f2826a1df5a'
+         'f2463de18998514387792af7972a6c6d')
 sha512sums=('SKIP'
-            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2')
+            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2'
+            '2163a1bbe5ea565b5168d3c6fa9883d517ae7181de53978d7bf8415e7a1c798acb40a92c129cf7e9dc8d9bbc3d5b88282bae50416ee97a18d7282fdc1ce634c9')
 
 # NINJAFLAGS is an env var used to pass commandline options to ninja
 # NOTE: It's your responbility to validate the value of $NINJAFLAGS. If unsure, don't set it.
