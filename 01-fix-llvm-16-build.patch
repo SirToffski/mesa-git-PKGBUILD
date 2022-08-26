@@ -1,4 +1,4 @@
-From ecfed201f2ac1bb9a5cb49b15d6f8912514755aa Mon Sep 17 00:00:00 2001
+From 3fd6b5bbf28dbe38e8bb0c06d1ad4a5841ad8691 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Kai=20Wasserb=C3=A4ch?= <kai@dev.carbon-project.org>
 Date: Tue, 9 Aug 2022 21:42:15 +0200
 Subject: [PATCH] fix(FTBFS): meson: raise C++ standard to C++17
@@ -19,6 +19,7 @@ Closes: <https://gitlab.freedesktop.org/mesa/mesa/-/issues/7031>
 Signed-off-by: Kai Wasserbäch <kai@dev.carbon-project.org>
 Reviewed-by: Jesse Natalie <jenatali@microsoft.com>
 Reviewed-by: David Heidelberg <david.heidelberg@collabora.com>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/17966>
 ---
  docs/install.rst                               | 4 ++--
  meson.build                                    | 2 +-
@@ -50,7 +51,7 @@ index a26ab829471c..f7591bdf431d 100644
     Windows SDK of at least 20348 is required, for building on Windows.
  
 diff --git a/meson.build b/meson.build
-index 048020e37791..14c3abac64df 100644
+index d50a1bc526a3..74014e77a3fd 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -27,7 +27,7 @@ project(
