@@ -26,17 +26,15 @@ conflicts=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-laye
 url="https://www.mesa3d.org"
 license=('custom')
 source=('mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-        'LICENSE'
-        '01-fix-llvm-16-build.patch')
+        'LICENSE')
 md5sums=('SKIP'
-         '5c65a0fe315dd347e09b1f2826a1df5a'
-         '6ecea31c729cdcb11e1171434abff16b')
+         '5c65a0fe315dd347e09b1f2826a1df5a')
 sha512sums=('SKIP'
-            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2'
-            '2618fbd77dd17bca8acc169933b72b2379c6758f6b80fa6210dbe9c7a21d0634056561dd954e875a14b30e6a8f090e35fc94bbee9baa5dbd115f1bf131dc78a7')
+            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2')
 
 # NINJAFLAGS is an env var used to pass commandline options to ninja
 # NOTE: It's your responbility to validate the value of $NINJAFLAGS. If unsure, don't set it.
+NINJAFLAGS="-j$(nproc)"
 
 # MESA_WHICH_LLVM is an environment variable that determines which llvm package tree is used to built mesa-git against.
 # Adding a line to ~/.bashrc  that sets this value is the simplest way to ensure a specific choice.
@@ -121,6 +119,7 @@ prepare() {
 
 build () {
     meson setup mesa _build \
+       -D cpp_std=c++17 \
        -D buildtype=plain \
        -D optimization=3 \
        -D b_ndebug=true \
