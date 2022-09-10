@@ -17,7 +17,7 @@ pkgrel=1
 arch=('x86_64')
 makedepends=('git' 'python-mako' 'xorgproto'
               'libxml2' 'libx11'  'libvdpau' 'libva' 'elfutils' 'libxrandr'
-              'wayland-protocols' 'meson' 'ninja' 'glslang' 'libclc')
+              'wayland-protocols' 'meson' 'ninja' 'glslang' 'directx-headers' 'libclc')
 depends=('libdrm' 'libxxf86vm' 'libxdamage' 'libxshmfence' 'libelf'
          'libomxil-bellagio' 'libunwind' 'libglvnd' 'wayland' 'lm_sensors' 'libclc' 'vulkan-icd-loader' 'zstd' 'expat')
 optdepends=('opengl-man-pages: for the OpenGL API man pages')
