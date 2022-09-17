@@ -129,7 +129,7 @@ build () {
        -D prefix=/usr \
        -D sysconfdir=/etc \
        -D platforms=x11,wayland \
-       -D gallium-drivers=r300,r600,radeonsi,virgl,svga,swrast,iris,crocus,zink,d3d12 \
+       -D gallium-drivers=r300,r600,radeonsi,virgl,svga,swrast,iris,crocus,zink \
        -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
        -D dri3=enabled \
        -D egl=enabled \
