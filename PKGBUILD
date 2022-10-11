@@ -26,14 +26,11 @@ conflicts=('mesa' 'opencl-mesa' 'vulkan-intel' 'vulkan-radeon' 'vulkan-mesa-laye
 url="https://www.mesa3d.org"
 license=('custom')
 source=('mesa::git+https://gitlab.freedesktop.org/mesa/mesa.git#branch=main'
-        'LICENSE'
-        '01_apply_experimantal_radv.patch')
+        'LICENSE')
 md5sums=('SKIP'
-         '5c65a0fe315dd347e09b1f2826a1df5a'
-         '2662ffe94127d3652e0102ad5d77a864')
+         '5c65a0fe315dd347e09b1f2826a1df5a')
 sha512sums=('SKIP'
-            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2'
-            '8d112547b3b236eea58f96bd6aa194cde2001892acbe6b77f78a5649b5431e959e253b3f279f6fd3935a2cc3d9e0165b2e9946f47beb144bbd7f5b554c7982de')
+            '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2')
 
 # NINJAFLAGS is an env var used to pass commandline options to ninja
 # NOTE: It's your responbility to validate the value of $NINJAFLAGS. If unsure, don't set it.
@@ -122,7 +119,6 @@ prepare() {
 
 build () {
     meson setup mesa _build \
-       -D buildtype=plain \
        -D optimization=3 \
        -D b_ndebug=true \
        -D b_lto=true \
@@ -155,7 +151,7 @@ build () {
        -D shared-glapi=enabled \
        -D gallium-opencl=icd \
        -D valgrind=disabled \
-       -D vulkan-layers=device-select,overlay \
+       -D vulkan-layers=device-select,overlay,intel-nullhw \
        -D tools=[] \
        -D zstd=enabled \
        -D microsoft-clc=disabled \
