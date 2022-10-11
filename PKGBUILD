@@ -138,7 +138,6 @@ build () {
        -D gallium-va=enabled \
        -D gallium-vdpau=enabled \
        -D gallium-xa=enabled \
-       -D gallium-xvmc=disabled \
        -D gbm=enabled \
        -D gles1=disabled \
        -D gles2=enabled \
