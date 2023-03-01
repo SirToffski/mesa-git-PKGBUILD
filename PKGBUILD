@@ -131,8 +131,8 @@ build () {
        -D prefix=/usr \
        -D sysconfdir=/etc \
        -D platforms=x11,wayland \
-       -D gallium-drivers=r300,r600,radeonsi,virgl,svga,swrast,iris,crocus,zink \
-       -D vulkan-drivers=amd,intel,swrast,virtio-experimental \
+       -D gallium-drivers=r300,r600,radeonsi,virgl,svga,swrast,i915,iris,crocus,zink,d3d12 \
+       -D vulkan-drivers=amd,intel,swrast,virtio-experimental,intel_hasvk \
        -D dri3=enabled \
        -D egl=enabled \
        -D gallium-extra-hud=true \
@@ -153,13 +153,13 @@ build () {
        -D shared-glapi=enabled \
        -D gallium-opencl=icd \
        -D valgrind=disabled \
-       -D vulkan-layers=device-select,overlay,intel-nullhw \
+       -D vulkan-layers=device-select,overlay \
        -D tools=[] \
        -D zstd=enabled \
        -D microsoft-clc=disabled \
        -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
        
-    meson configure _build
+    meson configure --no-pager _build
     
     ninja $NINJAFLAGS -C _build
 }
